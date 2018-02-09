@@ -233,15 +233,15 @@
 ;; pool check out
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(use-package ivy
-;;  :ensure t
-;;  :diminish (ivy-mode)
-;;  :bind (("C-x b" . ivy-switch-buffer))
-;;  :config
-;;  (ivy-mode 1)
-;;  (setq ivy-use-virtual-buffers t)
-;;  (setq ivy-display-style 'fancy)
-;; 	)
+(use-package shell-pop
+	:ensure t
+  :bind
+	(
+	 ("C-t" . shell-pop)
+	 )
+	:config
+	(setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+	)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -459,7 +459,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(ido-mode 'files)
 ;;(ido-mode 'buffer)
-(ido-mode 1)
+;;(ido-mode 1)
 ;;(ido-everywhere)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -837,7 +837,7 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
+	 '(shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
  '(sql-product 'ms)
  '(tab-width 2))
