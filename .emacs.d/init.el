@@ -120,10 +120,19 @@
 	 )
 	)
 
-(setq save-interprogram-paste-before-kill 1)
-(global-auto-revert-mode 1)
-(setq auto-revert-verbose nil)
+(use-package smex
+	:ensure t
+  :bind
+	:config
+	(global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  ;; This is your old M-x.
+  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+)
 
+(use-package neotree
+	:ensure t
+	)
 
 ;;(use-package aggressive-indent
 ;; 	:ensure t
@@ -146,6 +155,10 @@
 	:config
 	(global-set-key (kbd "C-t") 'theme-looper-enable-next-theme)
 	)
+
+;;(use-package gruber-darker-theme
+;; 	:ensure t
+;; 	)
 
 (use-package beacon
   :ensure t
@@ -311,6 +324,14 @@
 	:ensure t
 	)
 
+(use-package powershell
+	:ensure t
+	)
+
+(use-package csharp-mode
+	:ensure t
+	)
+
 (use-package web-mode
 	:ensure t
 	:config
@@ -350,6 +371,26 @@
 	;;	      ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 	)
 
+(use-package yaml-mode
+	:ensure t
+	)
+
+(use-package toml-mode
+	:ensure t
+	)
+
+(use-package csv-mode
+	:ensure t
+	)
+
+(use-package dockerfile-mode
+	:ensure t
+	)
+
+(use-package htmlize
+	:ensure t
+	)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* customization
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -386,6 +427,17 @@
 (defalias 'list-buffers 'ibuffer-other-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;* revert
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-auto-revert-mode 1)
+(setq auto-revert-verbose nil)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;* clipboard
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq save-interprogram-paste-before-kill 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* winner
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(winner-mode 1)
@@ -397,9 +449,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* indo
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;(setq indo-enable-flex-match t)
-;;(setq ido-everywhere t)
-;;(ido-mode 1)
+;;(ido-mode 'files)
+;;(ido-mode 'buffer)
+(ido-mode 1)
+;;(ido-everywhere)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* hippie expand
@@ -776,7 +829,7 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
+	 '(powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
  '(sql-product 'ms)
  '(tab-width 2))
