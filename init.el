@@ -50,8 +50,10 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/")
-	     )
+						 '("melpa" . "https://melpa.org/packages/")
+						 )
+
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (package-initialize)
 ;; M-x package-refresh-contents
@@ -109,8 +111,8 @@
 (use-package hungry-delete
   :ensure t
   :config
-  (global-hungry-delete-mode)
-  )
+  ;;(global-hungry-delete-mode)
+)
 
 (use-package expand-region
 	:ensure t
@@ -200,19 +202,18 @@
 ;;* org mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;; how to update?
-;;(use-package org
-;;	:ensure t
-;;	)
+(use-package org
+	:ensure t
+	)
 
-;;(use-package org-bullets
-;;  :ensure t
-;;  :config
-;;  (add-hook 'org-mode-hook
-;;						(lambda () (org-bullets-mode 1))
-;;						)
-;;	)
-;;
+(use-package org-bullets
+	:ensure t
+	:config
+	(add-hook 'org-mode-hook
+						(lambda () (org-bullets-mode 1))
+						)
+	)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* windows
@@ -420,6 +421,10 @@
 (cua-mode 't)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; C-x C-j
+(require 'dired-x)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* show line and col pos in modeline
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (display-time)
@@ -553,6 +558,60 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;** 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun align-to-colon (begin end)
+  "Align region to colon (:) signs"
+  (interactive "r")
+  (align-regexp
+	 begin end
+   (rx (group (zero-or-more (syntax whitespace))) ":") 1 1 )
+	)
+
+(defun align-to-comma (begin end)
+  "Align region to comma  signs"
+  (interactive "r")
+  (align-regexp
+	 begin end
+   (rx "," (group (zero-or-more (syntax whitespace))) ) 1 1 )
+	)
+
+
+(defun align-to-equals (begin end)
+  "Align region to equal signs"
+  (interactive "r")
+  (align-regexp
+	 begin end
+   (rx (group (zero-or-more (syntax whitespace))) "=") 1 1 )
+	)
+
+
+(defun align-to-hash (begin end)
+  "Align region to hash ( => ) signs"
+  (interactive "r")
+  (align-regexp
+	 begin end
+   (rx (group (zero-or-more (syntax whitespace))) "=>") 1 1 )
+	)
+
+(defun align-to-comma-before (begin end)
+  "Align region to equal signs"
+  (interactive "r")
+  (align-regexp
+	 begin end
+   (rx (group (zero-or-more (syntax whitespace))) ",") 1 1 )
+	)
+
+(defun kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+	(mapc 'kill-buffer 
+				(delq (current-buffer) (buffer-list))
+				)
+	)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;** scroll
