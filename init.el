@@ -14,14 +14,14 @@
 ;;$Date:      2018-02-06 $
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Commentary:
 ;; my Emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Code:
- 
+
 ;;(debug-on-entry 'display-warning)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -325,6 +325,10 @@
 	:ensure t
 	)
 
+(use-package go-mode
+	:ensure t
+	)
+
 (use-package markdown-mode
 	:ensure t
 	)
@@ -344,12 +348,13 @@
 (use-package web-mode
 	:ensure t
 	:config
-	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	;;(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	(setq web-mode-engines-alist
 				'(
 					("go"  . "/layouts/.*\\.html\\'")  ;; layouts
 					)
 				)
+	(setq web-mode-enable-auto-indentation nil)
 	(setq web-mode-extra-snippets
 				'(
 					("go" . (
@@ -379,6 +384,7 @@
 	;;	    '(("css" . (ac-source-css-property))
 	;;	      ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 	)
+
 
 (use-package yaml-mode
 	:ensure t
@@ -560,7 +566,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;** 
+;;**
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun align-to-colon (begin end)
@@ -608,7 +614,7 @@
 (defun kill-other-buffers ()
   "Kill all other buffers."
   (interactive)
-	(mapc 'kill-buffer 
+	(mapc 'kill-buffer
 				(delq (current-buffer) (buffer-list))
 				)
 	)
@@ -896,7 +902,7 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
+	 '(font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
  '(sql-product 'ms)
  '(tab-width 2))
@@ -907,4 +913,3 @@
  ;; If there is more than one, they won't work right.
  '(aw-leading-char-face ((t (:inherit ace-jump-face-foreground :height 3.0)))))
 ;;; init.el ends here
-
