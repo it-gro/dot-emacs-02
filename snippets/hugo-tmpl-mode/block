@@ -2,4 +2,5 @@
 # name: block
 # key: block
 # --
-{{ block "$0" . }} {{ end }}
+{{ block \`$0\` . }} 
+{{ end }}
