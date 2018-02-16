@@ -555,6 +555,13 @@
 ;;* useful packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(use-package font-lock-studio
+  :ensure t
+	)
+
+;; comments and strings are pre-colored, as they are part of the
+;; earlier syntactic phase (which isn't supported by Font Lock
+;; Studio).
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
