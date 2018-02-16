@@ -2,4 +2,4 @@
 # name: partial
 # key: partial
 # --
-{{ partial "$0" . }}
+{{ partial \`$0\` . }}
