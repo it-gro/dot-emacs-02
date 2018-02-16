@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ifei
+# key: ifei
+# --
+{{ if $0 }} {{ else if }} {{ end }}

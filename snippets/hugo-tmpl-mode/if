@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: ife
+# key: ife
+# --
+{{ if $0 }} {{ else }} {{ end }}
