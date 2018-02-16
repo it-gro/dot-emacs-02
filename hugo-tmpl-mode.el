@@ -343,12 +343,12 @@
   )
 
 (defconst hugo-tmpl-string-regexp
-  "\\(`.*?`\\)"
+  "\\(`.*?`\\|\".*?\"\\)"
   "Regexp string to highlight strings."
   )
 
 (defconst hugo-tmpl-comment-regexp
-  "{{-?\s*\\(/\\*\\(?:.\\|\n\\)*?\\*/\\)\s*}}"
+  "{{-?\s*\\(/\\*\\(?:.\\|\n\\)*?\\*/\\)\s*-?}}"
   "Regexp string to highlight comments."
   )
 
@@ -435,9 +435,15 @@
 (define-derived-mode hugo-tmpl-mode mhtml-mode "hugo tmpl"
   "Major mode for editing hugo files"
 
-  ;; code for syntax highlighting
+  ;;; code for syntax highlighting
+  ;;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Font-Lock-Basics.html#Font-Lock-Basics
+  ;;;  The second element, keywords-only, specifies the value of the
+  ;;;  variable font-lock-keywords-only. If this is omitted or nil,
+  ;;;  syntactic fontification (of strings and comments) is also
+  ;;;  performed. If this is non-nil, syntactic fontification is not
+  ;;;  performed.
   (setq font-lock-defaults
-    '(hugo-tmpl-font-lock-keywords) )
+    '(hugo-tmpl-font-lock-keywords 0) )
   )
 
 ;; add the mode to the `features' list
