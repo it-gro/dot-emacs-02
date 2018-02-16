@@ -42,9 +42,13 @@
 ;; 			(concat user-home-directory ".emacs.d/it-gro/")
 ;; 			) ; must end with /
 
+(defvar config-basedir "~/.emacs.d/")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* initialize an package install
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; https://github.com/jwiegley/use-package
 
 ;;; code:
 (require 'package)
@@ -79,9 +83,171 @@
 ;; packages install
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; https://github.com/seblemaguer/dotfiles/blob/master/emacs.d/main.org
+;; https://github.com/Schnouki/dotfiles/blob/master/emacs/init-20-dev.el
+
+(use-package use-package-ensure-system-package
+  :ensure t)
+
+(use-package paradox
+  :ensure t
+  :config
+  (setq paradox-spinner-type 'progress-bar))
+
+(use-package auto-package-update
+  :ensure t
+)
+
+(use-package auto-minor-mode
+  :ensure t)
+
+(defun my:auth-source-get-passwd (&rest spec &allow-other-keys)
+  (let ((founds (apply 'auth-source-search spec)))
+    (when founds
+      (funcall (plist-get (nth 0 founds) :secret)))))
+
+(defun my:auth-source-get-user (&rest spec &allow-other-keys)
+  (let ((founds (apply 'auth-source-search spec)))
+    (when founds
+      (plist-get (nth 0 founds) :user))))
+
+(defun edit-current-file-as-root ()
+  "Edit the file that is associated with the current buffer as root"
+  (interactive)
+  (if (buffer-file-name)
+      (progn
+        (setq file (concat "/sudo:localhost:" (buffer-file-name)))
+        (find-file file))
+    (message "Current buffer does not have an associated file.")))
+
+(setq system-time-locale "en_US.utf8")
+(prefer-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+
+(use-package undo-tree
+  :ensure t
+  :config
+  (global-undo-tree-mode))
+
+
+(use-package iedit
+  :ensure t
+  :config
+  (delete-selection-mode t))
+
+(defun align-to-equals (begin end)
+  "Align region to equal signs"
+   (interactive "r")
+   (align-regexp begin end "\\(\\s-*\\)=" 1 1 ))
+
+(use-package recentf
+  :init
+  (recentf-mode 1)
+
+  :config
+
+  ;; Increase limit
+  (setq recentf-max-menu-items 100)
+
+  ;; Emacs
+  (add-to-list 'recentf-exclude (format "%s/.orhc-bibtex-cache" (getenv "HOME")))
+  (add-to-list 'recentf-exclude (format "%s/configuration/emacs\\.d/\\(?!\\(main.*\\)\\)" (getenv "HOME")))
+  (add-to-list 'recentf-exclude (format "%s/\\.emacs\\.d/.*" (getenv "HOME")))
+
+  ;; Some caches
+  (add-to-list 'recentf-exclude (format "%s/\\.ido\\.last" (getenv "HOME")))
+  (add-to-list 'recentf-exclude (format "%s/\\.recentf" (getenv "HOME")))
+
+
+  ;; elfeed
+  (add-to-list 'recentf-exclude (format "%s/\\.elfeed/.*" (getenv "HOME")))
+  (add-to-list 'recentf-exclude (format "%s/Dropbox/emacs/elfeed/.*" (getenv "HOME")))
+
+  ;; Org-mode organisation
+  (add-to-list 'recentf-exclude (format "%s/Dropbox/org/organisation/.*" (getenv "HOME")))
+
+  ;; Org/todo/calendars
+  (add-to-list 'recentf-exclude ".*todo.org")
+  (add-to-list 'recentf-exclude (format "%s/Calendars/.*" (getenv "HOME")))
+
+  ;; Maildir
+  (add-to-list 'recentf-exclude (format "%s/maildir.*" (getenv "HOME")))
+
+  )
+
+
+;;(use-package ssh-config-mode
+;;  :ensure t
+;;  :config
+;;  (autoload 'ssh-config-mode "ssh-config-mode" t)
+;;  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\'"     . ssh-config-mode))
+;;  (add-to-list 'auto-mode-alist '("/system/ssh\\'"        . ssh-config-mode))
+;;  (add-to-list 'auto-mode-alist '("/sshd?_config\\'"      . ssh-config-mode))
+;;  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
+;;  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode))
+;;  (add-hook 'ssh-config-mode-hook 'turn-on-font-lock))
+
+(use-package logview
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("syslog\\(?:\\.[0-9]+\\)" . logview-mode))
+  (add-to-list 'auto-mode-alist '("\\.log\\(?:\\.[0-9]+\\)?\\'" . logview-mode)))
+
+
+(use-package treemacs
+  :ensure t
+  :after hl-line-mode
+  :config
+  (setq treemacs-follow-after-init          t
+        treemacs-width                      35
+        treemacs-indentation                2
+        treemacs-git-integration            t
+        treemacs-collapse-dirs              3
+        treemacs-silent-refresh             nil
+        treemacs-change-root-without-asking nil
+        treemacs-sorting                    'alphabetic-desc
+        treemacs-show-hidden-files          t
+        treemacs-never-persist              nil
+        treemacs-is-never-other-window      nil
+        treemacs-goto-tag-strategy          'refetch-index)
+
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  :bind
+  (:map global-map
+        ([f8]        . treemacs-toggle)))
+
+(use-package treemacs-projectile
+  :ensure t
+  :after treemacs
+  :config
+  (setq treemacs-header-function #'treemacs-projectile-create-header))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; most important packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(use-package diminish
+  :ensure t
+	)
+
+(use-package delight
+  :ensure t
+	)
 
 (use-package try
   :ensure t
@@ -99,41 +265,173 @@
 	(editorconfig-mode 1)
 	)
 
-(use-package auto-complete
-	:ensure t
-	:init
-	(progn
-		(ac-config-default)
-		(global-auto-complete-mode t)
-		)
-	)
+(use-package company
+  :ensure t
+  :config
+  ;; Global
+  (setq company-idle-delay 1
+        company-minimum-prefix-length 1
+        company-show-numbers t
+        company-tooltip-limit 20)
+
+
+  ;; Facing
+  (unless (face-attribute 'company-tooltip :background)
+    (set-face-attribute 'company-tooltip nil :background "black" :foreground "gray40")
+    (set-face-attribute 'company-tooltip-selection nil :inherit 'company-tooltip :background "gray15")
+    (set-face-attribute 'company-preview nil :background "black")
+    (set-face-attribute 'company-preview-common nil :inherit 'company-preview :foreground "gray40")
+    (set-face-attribute 'company-scrollbar-bg nil :inherit 'company-tooltip :background "gray20")
+    (set-face-attribute 'company-scrollbar-fg nil :background "gray40"))
+
+  ;; Default backends
+  (setq company-backends '((company-files)))
+
+  ;; Activating globally
+  (global-company-mode t)
+)
+
+
+(use-package company-quickhelp
+  :ensure t
+  :after company
+  :config
+  (company-quickhelp-mode 1)
+)
+
+
+
+;;(use-package company
+;;  :ensure t
+;;  :defer t
+;;  :bind ("C-<tab>" . company-complete)
+;;  :init (global-company-mode)
+;;  :config
+;;  (bind-key [remap completion-at-point] #'company-complete company-mode-map)
+;;  (setq
+;;    company-tooltip-align-annotations t
+;;    company-show-numbers t
+;;    company-dabbrev-downcase nil
+;;    )
+;;  (setq company-backends (delete 'company-semantic company-backends))
+;;  ;;(setq company-backends '(company-clang))
+;;  ;;(add-to-list 'company-backends 'company-gtags)
+;;  ;;(add-to-list 'company-backends 'company-c-headers)
+;;  ;;:diminish company-mode
+;;  )
+
+;;(delete 'company-dabbrev company-backends)
+;;(delete '(company-dabbrev-code company-gtags company-etags company-keywords) company-backends)
+;;(add-to-list 'company-backends '(company-auctex)
+;;
+;; (company-emoji . #1=(:with company-yasnippet))
+;; (company-bbdb . #1#)
+;; (company-nxml . #1#)
+;; (company-css . #1#)
+;; (company-eclim . #1#)
+;; (company-semantic . #1#)
+;; (company-clang . #1#)
+;; (company-xcode . #1#)
+;; (company-cmake . #1#)
+;; (company-capf . #1#)
+;; (company-files . #1#)
+;; (company-dabbrev-code company-gtags company-etags company-keywords . #1#)
+;; (company-oddmuse . #1#)
+;; (company-dabbrev . #1#)
+;;
+;;  (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
+;;  	(company-dabbrev-code company-gtags company-etags company-keywords)
+;;  	company-oddmuse company-dabbrev)
+
+
+;; Add yasnippet support for all company backends
+;; https://github.com/syl20bnr/spacemacs/pull/179
+(defvar company-mode/enable-yas t
+  "Enable yasnippet for all backends.")
+
+(defun company-mode/backend-with-yas (backend)
+  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+    backend
+    (append (if (consp backend) backend (list backend))
+      '(:with company-yasnippet))))
+
+;;(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+
+
+
+;;(use-package company-quickhelp          ; Documentation popups for Company
+;;  :ensure t
+;;  :defer t
+;;  :hook
+;;  (global-company-mode-hook)
+;;  )
+
+(use-package company-dict
+  :ensure t
+  :after company
+  :bind
+  ("C-c h" . company-dict)
+  :init
+  (setq company-dict-dir (concat user-emacs-directory "dict/"))
+  :config
+  (add-to-list 'company-backends 'company-dict)
+  )
+
+(use-package company-plsense
+  :ensure t
+  )
+
+(use-package company-web
+  :ensure t
+  :after company
+  :bind
+  ("C-c w" . company-web-html)
+  :config
+  (add-to-list 'company-backends 'company-web-html)
+  )
+
+(use-package company-emoji
+  :ensure t
+  :after company
+  :config
+  (add-to-list 'company-backends 'company-emoji)
+	(company-emoji-init)
+  )
+
+;;(use-package auto-complete
+;;  :ensure t
+;;  :init
+;;  (ac-config-default)
+;;  :config
+;;  (global-auto-complete-mode t)
+;;  )
+
 
 (use-package hungry-delete
   :ensure t
-  :config
-  ;;(global-hungry-delete-mode)
+  :init
+  (global-hungry-delete-mode)
 )
 
 (use-package expand-region
 	:ensure t
-	:config
+  :init
 	(global-set-key (kbd "C-=") 'er/expand-region)
 	)
 
 (use-package counsel
 	:ensure t
-  :bind
-  (
-	 ("M-y" . counsel-yank-pop)
-   :map ivy-minibuffer-map
-   ("M-y" . ivy-next-line)
-	 )
+  :bind (
+	        ("M-y" . counsel-yank-pop)
+          :map ivy-minibuffer-map
+          ("M-y" . ivy-next-line)
+	        )
 	)
 
 (use-package smex
 	:ensure t
   :bind
-	:config
+	:init
 	(global-set-key (kbd "M-x") 'smex)
   (global-set-key (kbd "M-X") 'smex-major-mode-commands)
   ;; This is your old M-x.
@@ -162,7 +460,7 @@
 
 (use-package theme-looper
 	:ensure t
-	:config
+	:init
 	(global-set-key (kbd "C-t") 'theme-looper-enable-next-theme)
 	)
 
@@ -222,6 +520,7 @@
 (use-package ace-window
 	:ensure t
 	:init
+	:config
 	(progn
 		(global-set-key [remap other-window] 'ace-window)
 		(custom-set-faces
@@ -234,16 +533,43 @@
 ;; pool check out
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package shell-pop
-	:ensure t
-  :bind
-	(
-	 ("C-t" . shell-pop)
-	 )
-	:config
-	(setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
-	)
+;;(use-package shell-pop
+;;  :ensure t
+;;  :bind
+;;  (
+;;   ("C-t" . shell-pop)
+;;   )
+;;  :config
+;;  (setq shell-pop-shell-type (quote ("ansi-term" "*ansi-term*" (lambda nil (ansi-term shell-pop-term-shell)))))
+;;  )
 
+
+;;(use-package company-go
+;;  :ensure t
+;;  :defer t
+;;  :init
+;;  (with-eval-after-load 'company
+;;    (add-to-list 'company-backends 'company-go))
+;;)
+;;
+;;
+;;(use-package go-mode
+;;  :ensure t
+;;  :init
+;;  (progn
+;;    (setq gofmt-command "goimports")
+;;    (add-hook 'before-save-hook 'gofmt-before-save)
+;;    (bind-key [remap find-tag] #'godef-jump))
+;;  :config
+;;  (add-hook 'go-mode-hook 'electric-pair-mode)
+;;  )
+;;
+;;(use-package go-eldoc
+;;  :ensure t
+;;  :defer
+;;  :init
+;;  (add-hook 'go-mode-hook 'go-eldoc-setup)
+;;  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* useful packages
@@ -293,10 +619,44 @@
 	)
 
 (use-package yasnippet
-	:ensure t
-	:config
-	(yas-global-mode 1)
-	)
+  :ensure t
+  :after company
+  :config
+
+  ;; Adding yasnippet support to company
+  (add-to-list 'company-backends '(company-yasnippet))
+
+  ;; Activate global
+  (yas-global-mode)
+)
+
+(use-package yatemplate
+  :ensure t
+  :after yasnippet
+  :config
+
+  ;; Define template directory
+  (setq yatemplate-dir (concat config-basedir "/third_parties/templates"))
+
+  ;; Coupling with auto-insert
+  (setq auto-insert-alist nil)
+  (yatemplate-fill-alist)
+  ;; (add-hook 'find-file-hook 'auto-insert)
+  )
+
+
+
+
+;;(use-package yasnippet
+;;  :ensure t
+;;  :diminish yas-minor-mode
+;;  :config
+;;  (yas-global-mode 1)
+;;  ;; Remove Yasnippet's default tab key binding
+;;  (define-key yas-minor-mode-map (kbd "TAB") nil)
+;;  ;; Set Yasnippet's key binding to shift+tab
+;;  (define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+;;  )
 
 ;;(use-package yasnippet-snippets
 ;;  :ensure t
@@ -390,13 +750,26 @@
 	:ensure t
 	)
 
+(use-package yaml-tomato :ensure t)
+
+
 (use-package toml-mode
 	:ensure t
 	)
 
+;;(use-package csv-mode
+;;  :ensure t
+;;  )
+
 (use-package csv-mode
-	:ensure t
-	)
+  :ensure t
+  :config
+;; Define separators
+  (setq csv-separators '("," ";" ":" " ")))
+;; Subpackages
+(use-package csv-nav :ensure t :disabled)
+
+
 
 (use-package dockerfile-mode
 	:ensure t
@@ -405,6 +778,28 @@
 (use-package htmlize
 	:ensure t
 	)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;* my modes
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun load-if-exists (f)
+  "Load the elisp file F only if it exists and is readable."
+  (if (file-readable-p f)
+    (load-file f)
+    )
+  )
+
+(if (file-readable-p "~/.emacs.d/hugo-tmpl-mode.el")
+  (progn
+    (load-file "~/.emacs.d/hugo-tmpl-mode.el")
+    (font-lock-add-keywords 'mhtml-mode hugo-tmpl-font-lock-keywords)
+    ;;(font-lock-add-keywords 'html-mode hugo-tmpl-font-lock-keywords)
+    ;;(add-to-list 'auto-mode-alist '("/layouts/.*\\.html\\'" . hugo-tmpl-mode))
+    )
+  )
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* customization
@@ -902,7 +1297,7 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
+    '(hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
  '(sql-product 'ms)
  '(tab-width 2))

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: withe
+# key: withe
+# --
+{{ with $0 }} {{ else }} {{ end }}

@@ -1,0 +1,262 @@
+block									(a)	
+define								(a)	
+else									(a)	
+end										(a)	
+if										(a)	
+partial								(a)	
+range									(a)	
+template							(a)	
+with									(a)	
+
+.AddDate							(f)		[".AddDate YEARS MONTHS DAYS"] Returns the time corresponding to adding the given number of years, months, and days passed to the function. 
+.Format								(f)		[".Format FORMAT"] Formats built-in Hugo dates---`.Date`, `.PublishDate`, and `.LastMod`---according to Go's layout string. 
+.Get									(f)		["Get INDEX", "Get KEY"] Accesses positional and ordered parameters in shortcode declaration. 
+.GetPage							(f)		[".GetPage TYPE PATH"] "Gets a `Page` of a given `Kind` and `path`." 
+.HasChildren					(f)		["HasChildren"]	 
+.HasMenuCurrent				(f)		["HasMenuCurrent"]	
+.IsMenuCurrent				(f)		["IsMenuCurrent"]	 
+.Param								(f)		[".Param KEY"] Calls page or site variables into your template. 
+.Scratch							(f)		[] Acts as a "scratchpad" to allow for writable page- or shortcode-scoped variables. 
+.Unix									(f)		[".Unix"] .Unix returns the local Time corresponding to the given Unix time, sec seconds and nsec nanoseconds since January 1, 1970 UTC. 
+absLangURL						(f)		["absLangURL INPUT"] Adds the absolute URL with correct language prefix according to site configuration for multilingual. 
+absURL								(f)		["absURL INPUT"] Creates an absolute URL based on the configured baseURL. 
+add										(f)		Adds two integers
+after									(f)		["after INDEX COLLECTION"] "`after` slices an array to only the items after the <em>N</em>th item." 
+apply									(f)		["apply COLLETION FUNCTION [PARAM...]"] Given a map, array, or slice, `apply` returns a new slice with a function applied over it. 
+base64								(f)		["base64Decode INPUT", "base64Encode INPUT"] "`base64Encode` and `base64Decode` let you easily decode content with a base64 encoding and vice versa through pipes." 
+chomp									(f)		["chomp INPUT"] Removes any trailing newline characters. 
+cond									(f)		["cond CONTROL VAR1 VAR2"] "Return one of two arguments, depending on the value of a third argument." 
+countrunes						(f)		["countrunes INPUT"] Determines the number of runes in a string excluding any whitespace. 
+countwords						(f)		["countwords INPUT"] Counts the number of words in a string. 
+dateFormat						(f)		["dateFormat LAYOUT INPUT"] Converts the textual representation of the `datetime` into the specified format. 
+default								(f)		["default DEFAULT INPUT"] Allows setting a default value that can be returned if a first value is not set. 
+delimit								(f)		["delimit COLLECTION DELIMIT LAST"] Loops through any array, slice, or map and returns a string of all the values separated by a delimiter. 
+dict									(f)		["dict KEY VALUE [KEY VALUE]..."] Creates a dictionary from a list of key and value pairs. 
+div										(f)		Divides two integers
+echoParam							(f)		["echoParam DICTIONARY KEY"] Prints a parameter if it is set. 
+emojify								(f)		["emojify INPUT"] Runs a string through the Emoji emoticons processor. 
+eq										(f)		["eq ARG1 ARG2"] Returns the boolean truth of arg1 == arg2. 
+errorf								(f)		["errorf FORMAT INPUT"] Evaluates a format string and logs it to ERROR. 
+fileExists						(f)		["fileExists PATH"] Checks whether a file exists under the given path. 
+findRE								(f)		["findRE PATTERN INPUT [LIMIT]"] Returns a list of strings that match the regular expression. 
+first									(f)		["first LIMIT COLLECTION"] "Slices an array to only the first _N_ elements." 
+float									(f)		["float INPUT"] Creates a `float` from the argument passed into the function. 
+ge										(f)		["ge ARG1 ARG2"] Returns the boolean truth of arg1 >= arg2. 
+getenv								(f)		["getenv VARIABLE"] Returns the value of an environment variable. 
+gt										(f)		["gt ARG1 ARG2"] Returns the boolean truth of arg1 > arg2. 
+hasprefix							(f)		["hasPrefix STRING PREFIX"] Tests whether a string begins with prefix. 
+highlight							(f)		["highlight INPUT LANG OPTIONS"] Takes a string of code and language declaration and uses Pygments to return syntax-highlighted HTML with inline-styles. 
+htmlEscape						(f)		["htmlEscape INPUT"] Returns the given string with the reserved HTML codes escaped. 
+htmlUnescape					(f)		["htmlUnescape INPUT"] Returns the given string with HTML escape codes un-escaped. 
+humanize							(f)		["humanize INPUT"] Returns the humanized version of an argument with the first letter capitalized. 
+i18n									(f)		["i18n KEY", "T KEY"] Translates a piece of content based on your i18n configuration files. 
+in										(f)		["in SET ITEM"] Checks if an element is in an array or slice--or a substring in a string---and returns a boolean. 
+index									(f)		["index COLLECTION INDEX", "index COLLECTION KEY"] Looks up the index(es) or key(s) of the data structure passed into it. 
+int										(f)		["int INPUT"] Creates an `int` from the argument passed into the function. 
+intersect							(f)		["intersect SET1 SET2"] Returns the common elements of two arrays or slices. 
+isset									(f)		["isset COLLECTION INDEX", "isset COLLECTION KEY"] Returns true if the parameter is set. 
+jsonify								(f)		["jsonify INPUT"] Encodes a given object to JSON. 
+lang.NumFmt						(f)		["lang.NumFmt PRECISION NUMBER [OPTIONS]"] "Formats a number with a given precision using the requested `negative`, `decimal`, and `grouping` options. The `options` parameter is a string consisting of `<negative> <decimal> <grouping>`." 
+last									(f)		["last INDEX COLLECTION"] "slices an array to only the last <em>N</em>th elements." 
+le										(f)		["le ARG1 ARG2"] Returns the boolean truth of arg1 <= arg2. 
+len										(f)		["len INPUT"] Returns the length of a variable according to its type. 
+lower									(f)		["lower INPUT"] Converts all characters in the provided string to lowercase. 
+lt										(f)		["lt ARG1 ARG2"] Returns the boolean truth of arg1 < arg2. 
+markdownify						(f)		["markdownify INPUT"] Runs the provided string through the Markdown processor. 
+math.Ceil							(f)		Returns the least integer value greater than or equal to the given number
+math.Floor						(f)		Returns the greatest integer value less than or equal to the given number
+math.Round						(f)		Returns the nearest integer, rounding half away from zero
+md5										(f)		["md5 INPUT"] hashes the given input and returns its MD5 checksum. 
+mod										(f)		Modulus of two integers
+modBool								(f)		Boolean of modulus of two integers. Evaluates to true if result equals 0
+mul										(f)		Multiplies two integers
+ne										(f)		["ne ARG1 ARG2"] Returns the boolean truth of arg1 != arg2. 
+now										(f)		["now"] Returns the current local time	
+partialCached					(f)		["partialCached LAYOUT INPUT [VARIANT...]"] Allows for caching of partials that do not need to be re-rendered on every invocation. 
+plainify							(f)		["plainify INPUT"] Strips any HTML and returns the plain text version of the provided string. 
+pluralize							(f)		["pluralize INPUT"] Pluralizes the given word according to a set of common English pluralization rules 
+print									(f)		["print INPUT"] Prints the default representation of the given argument using the standard `fmt.Print` function. 
+printf								(f)		["printf FORMAT INPUT"] Formats a string using the standard `fmt.Sprintf` function. 
+println								(f)		["println INPUT"] Prints the default representation of the given argument using the standard `fmt.Print` function and enforces a linebreak. 
+querify								(f)		["querify KEY VALUE [KEY VALUE]..."] Takes a set of key-value pairs and returns a query string to be appended to URLs. 
+range									(f)		["range COLLECTION"] Iterates over a map, array, or slice. 
+readDir								(f)		["readDir PATH"] Gets a directory listing from a directory relative to the current working directory. 
+readFile							(f)		["readFile PATH"] Reads a file from disk relative to the current project working directory and returns a string. 
+ref										(f)		["ref . CONTENT"] Looks up a content page by logical name. 
+relLangURL						(f)		["relLangURL INPUT"] Adds the relative URL with correct language prefix according to site configuration for multilingual. 
+relURL								(f)		["relURL INPUT"] Given a string, prepends the relative URL according to a page's position in the project directory structure. 
+relref								(f)		["relref . CONTENT"] Looks up a content page by relative path. 
+render								(f)		["render LAYOUT"] Takes a view to apply when rendering content. 
+replace								(f)		["replace INPUT OLD NEW"] Replaces all occurrences of the search string with the replacement string. 
+replaceRE							(f)		["replaceRE PATTERN REPLACEMENT INPUT"] Replaces all occurrences of a regular expression with the replacement pattern. 
+safeCSS								(f)		["safeCSS INPUT"] Declares the provided string as a known "safe" CSS string. 
+safeHTML							(f)		["safeHTML INPUT"] Declares a provided string as a "safe" HTML document to avoid escaping by Go templates. 
+safeHTMLAttr					(f)		["safeHTMLAttr INPUT"] Declares the provided string as a safe HTML attribute. 
+safeJS								(f)		["safeJS INPUT"] Declares the provided string as a known safe JavaScript string. 
+safeURL								(f)		["safeURL INPUT"] Declares the provided string as a safe URL or URL substring. 
+seq										(f)		["seq LAST", "seq FIRST LAST", "seq FIRST INCREMENT LAST"] Creates a sequence of integers. 
+sha										(f)		["sha1 INPUT", "sha256 INPUT"] Hashes the given input and returns either an SHA1 or SHA256 checksum. 
+shuffle								(f)		["shuffle COLLECTION"] Returns a random permutation of a given array or slice. 
+singularize						(f)		["singularize INPUT"] Converts a word according to a set of common English singularization rules. 
+slice									(f)		["slice ITEM..."] Creates a slice (array) of all passed arguments. 
+slicestr							(f)		["slicestr STRING START [END]"] Creates a slice of a half-open range, including start and end indices. 
+sort									(f)		[] Sorts maps, arrays, and slices and returns a sorted slice. 
+split									(f)		["split STRING DELIM"] splits a string into substrings separated by a delimiter 
+string								(f)		["string INPUT"] Creates a string from the argument passed to the function 
+strings.TrimLeft			(f)		["strings.TrimLeft CUTSET STRING"] Returns a slice of a given string with all leading characters contained in the cutset removed. 
+strings.TrimPrefix		(f)		["strings.TrimPrefix PREFIX STRING"] Returns a given string s without the provided leading prefix string. If s doesn't start with prefix, s is returned unchanged. 
+strings.TrimRight			(f)		["strings.TrimRight CUTSET STRING"] Returns a slice of a given string with all trailing characters contained in the cutset removed. 
+strings.TrimSuffix		(f)		["strings.TrimSuffix SUFFIX STRING"] Returns a given string s without the provided trailing suffix string. If s doesn't end with suffix, s is returned unchanged. 
+sub										(f)		Subtracts two integers
+substr								(f)		["substr STRING START [LENGTH]"] Extracts parts of a string from a specified character's position and returns the specified number of characters. 
+time									(f)		["time INPUT"] Converts a timestamp string into a `time.Time` structure. 
+title									(f)		["title INPUT"] Converts all characters in the provided string to title case. 
+trim									(f)		["trim INPUT CUTSET"] Returns a slice of a passed string with all leading and trailing characters from cutset removed. 
+truncate							(f)		["truncate SIZE INPUT", "truncate SIZE ELLIPSIS INPUT"] Truncates a text to a max length without cutting words or leaving unclosed HTML tags. 
+union									(f)		["union SET1 SET2"] Given two arrays or slices, returns a new array that contains the elements or objects that belong to either or both arrays/slices. 
+uniq									(f)		["uniq SET"] Takes in a slice or array and returns a slice with subsequent duplicate elements removed. 
+upper									(f)		["upper INPUT"] Converts all characters in a string to uppercase 
+urlize								(f)		["urlize INPUT"] Takes a string, sanitizes it for usage in URLs, and converts spaces to hyphens. 
+urls.Parse						(f)		["urls.Parse URL"] Parse parses a given url, which may be relative or absolute, into a URL structure. 
+where									(f)		["where COLLECTION KEY [OPERATOR] MATCH"] Filters an array to only the elements containing a matching value for a given field. 
+with									(f)		["with INPUT"] Rebinds the context (`.`) within its scope and skips the block if the variable is absent. 
+
+.File														[v] 
+.GitInfo												[v] 
+.Hugo														[v] 
+.Menu														[v] 
+.Page														[v] 
+.Site														[v] 
+.Sitemap												[v] 
+
+.Aliases												[fm] 
+.Date														[fm] 
+.Description										[fm] 
+.Draft													[fm] 
+.ExpiryDate											[fm] 
+.Keywords												[fm] 
+.Lastmod												[fm] 
+.Layout													[fm] 
+.LinkTitle											[fm] 
+.Markup													[fm] 
+.PublishDate										[fm] 
+.Slug														[fm] 
+.Title													[fm] 
+.Type														[fm] 
+.Weight													[fm] 
+
+.Data.Pages											 (v)			 The list of pages in the taxonomy
+.Data.Plural										 (v)			 The plural name of the taxonomy (e.g., `tags => tags`)
+.Data.Singular									 (v)			 The singular name of the taxonomy (e.g., `tags => `tag`)
+.Data.Terms											 (v)			 The taxonomy itself
+.Data.Terms.Alphabetical				 (v)			 The taxonomy terms alphabetized
+.Data.Terms.ByCount							 (v)			 The Terms ordered by popularity
+.File.BaseFileName							 (v)			 the filename without extension (e.g., `foo.en`)
+.File.Dir												 (v)			 given the path `content/posts/dir1/dir2/`, the relative directory path of the content file will be returned (e.g., `posts/dir1/dir2/`)
+.File.Ext												 (v)			 the file extension of the content file (e.g., `md`); this can also be called using `.File.Extension` as well. Note that it is *only* the extension without `.`.
+.File.Lang											 (v)			 the language associated with the given file if Hugo's [Multilingual features][multilingual] are enabled (e.g., `en`)
+.File.LogicalName								 (v)			 the name of the content file that represents a page (e.g., `foo.en.md`)
+.File.Path											 (v)			 the original relative path of the page (e.g., `content/posts/foo.en.md`)
+.File.TranslationBaseName				 (v)			 the filename without extension or optional language identifier (e.g., `foo`)
+.GitInfo.AbbreviatedHash				 (v)			 the abbreviated commit hash (e.g., `866cbcc`)
+.GitInfo.AuthorDate							 (v)			 the author date
+.GitInfo.AuthorEmail						 (v)			 the author's email address, respecting `.mailmap`
+.GitInfo.AuthorName							 (v)			 the author's name, respecting `.mailmap`
+.GitInfo.Hash										 (v)			 the commit hash (e.g., `866cbccdab588b9908887ffd3b4f2667e94090c3`)
+.GitInfo.Subject								 (v)			 commit message subject (e.g., `tpl: Add custom index function`)
+.Hugo.BuildDate									 (v)			 the compile date of the current Hugo binary formatted with RFC 3339 e.g. `2002-10-02T10:00:00-05:00`<br>
+.Hugo.CommitHash								 (v)			 the git commit hash of the current Hugo binary e.g. `0e8bed9ccffba0df554728b46c5bbf6d78ae5247`
+.Hugo.Generator									 (v)			 `<meta>` tag for the version of Hugo that generated the site. `.Hugo.Generator` outputs a *complete* HTML tag; e.g. `<meta name="generator" content="Hugo 0.18" />`
+.Hugo.Version										 (v)			 the current version of the Hugo binary you are using e.g. `0.13-DEV`<br>
+.Menu.Children									 (v)			 Menu
+.Menu.Identifier								 (v)			 string
+.Menu.Menu											 (v)			 string
+.Menu.Name											 (v)			 string
+.Menu.Page											 (v)			 [Page Object](/variables/page/)
+.Menu.Parent										 (v)			 string
+.Menu.Post											 (v)			 template.HTML
+.Menu.Pre												 (v)			 template.HTML
+.Menu.Title											 (v)			 string
+.Menu.URL												 (v)			 string
+.Menu.Weight										 (v)			 int
+.Page.AlternativeOutputFormats	 (v)			 contains all alternative formats for a given page; this variable is especially useful `link rel` list in your site's `<head>`. (See [Output Formats](/templates/output-formats/).)
+.Page.Content										 (v)			 the content itself, defined below the front matter.
+.Page.Data											 (v)			 the data specific to this type of page.
+.Page.Date											 (v)			 the date associated with the page; `.Date` pulls from the `date` field in a content's front matter. See also `.ExpiryDate`, `.PublishDate`, and `.Lastmod`.
+.Page.Description								 (v)			 the description for the page.
+.Page.Dir												 (v)			 the path of the folder containing this content file. The path is relative to the `content` folder.
+.Page.Draft											 (v)			 a boolean, `true` if the content is marked as a draft in the front matter.
+.Page.ExpiryDate								 (v)			 the date on which the content is scheduled to expire; `.ExpiryDate` pulls from the `expirydate` field in a content's front matter. See also `.PublishDate`, `.Date`, and `.Lastmod`.
+.Page.File											 (v)			 filesystem-related data for this content file. See also [File Variables][].
+.Page.FuzzyWordCount						 (v)			 the approximate number of words in the content.
+.Page.Hugo											 (v)			 see [Hugo Variables](/variables/hugo/).
+.Page.IsHome										 (v)			 `true` in the context of the [homepage](/templates/homepage/).
+.Page.IsNode										 (v)			 always `false` for regular content pages.
+.Page.IsPage										 (v)			 always `true` for regular content pages.
+.Page.IsTranslated							 (v)			 `true` if there are translations to display.
+.Page.Keywords									 (v)			 the meta keywords for the content.
+.Page.Kind											 (v)			 the page's *kind*. Possible return values are `page`, `home`, `section`, `taxonomy`, or `taxonomyTerm`. Note that there are also `RSS`, `sitemap`, `robotsTXT`, and `404` kinds, but these are only available during the rendering of each of these respective page's kind and therefore *not* available in any of the `Pages` collections.
+.Page.Lang											 (v)			 language taken from the language extension notation.
+.Page.Language									 (v)			 a language object that points to the language's definition in the site
+.Page.Lastmod										 (v)			 the date the content was last modified. `.Lastmod` pulls from the `lastmod` field in a content's front matter.
+.Page.LinkTitle									 (v)			 access when creating links to the content. If set, Hugo will use the `linktitle` from the front matter before `title`.
+.Page.Next											 (v)			 pointer to the following content (based on the `publishdate` field in front matter).
+.Page.NextInSection							 (v)			 pointer to the following content within the same section (based on `publishdate` field in front matter).
+.Page.OutputFormats							 (v)			 contains all formats, including the current format, for a given page. Can be combined the with [`.Get` function](/functions/get/) to grab a specific format. (See [Output Formats](/templates/output-formats/).)
+.Page.Pages											 (v)			 a collection of associated pages. This value will be `nil` for regular content pages. `.Pages` is an alias for `.Data.Pages`.
+.Page.Permalink									 (v)			 the Permanent link for this page; see [Permalinks](/content-management/urls/)
+.Page.Plain											 (v)			 the Page content stripped of HTML tags and presented as a string.
+.Page.PlainWords								 (v)			 the Page content stripped of HTML as a `[]string` using Go's [`strings.Fields`](https://golang.org/pkg/strings/#Fields) to split `.Plain` into a slice.
+.Page.Prev											 (v)			 Pointer to the previous content (based on `publishdate` in front matter).
+.Page.PrevInSection							 (v)			 Pointer to the previous content within the same section (based on `publishdate` in front matter). For example, `{{if .PrevInSection}}{{.PrevInSection.Permalink}}{{end}}`.
+.Page.PublishDate								 (v)			 the date on which the content was or will be published; `.Publishdate` pulls from the `publishdate` field in a content's front matter. See also `.ExpiryDate`, `.Date`, and `.Lastmod`.
+.Page.RSSLink										 (v)			 link to the taxonomies' RSS link.
+.Page.RawContent								 (v)			 raw markdown content without the front matter. Useful with [remarkjs.com](
+.Page.ReadingTime								 (v)			 the estimated time, in minutes, it takes to read the content.
+.Page.Ref												 (v)			 returns the permalink for a given reference (e.g., `.Ref "sample.md"`).	 `.Ref` does *not* handle in-page fragments correctly. See [Cross References](/content-management/cross-references/).
+.Page.RelPermalink							 (v)			 the relative permanent link for this page.
+.Page.RelRef										 (v)			 returns the relative permalink for a given reference (e.g., `RelRef
+.Page.Site											 (v)			 see [Site Variables](/variables/site/).
+.Page.Summary										 (v)			 a generated summary of the content for easily showing a snippet in a summary view. The breakpoint can be set manually by inserting <code>&lt;!&#x2d;&#x2d;more&#x2d;&#x2d;&gt;</code> at the appropriate place in the content page. See [Content Summaries](/content-management/summaries/) for more details.
+.Page.TableOfContents						 (v)			 the rendered [table of contents](/content-management/toc/) for the page.
+.Page.Title											 (v)			 the title for this page.
+.Page.Translations							 (v)			 a list of translated versions of the current page. See [Multilingual Mode](/content-management/multilingual/) for more information.
+.Page.Truncated									 (v)			 a boolean, `true` if the `.Summary` is truncated. Useful for showing a "Read more..." link only when necessary.	 See [Summaries](/content-management/summaries/) for more information.
+.Page.Type											 (v)			 the [content type](/content-management/types/) of the content (e.g., `post`).
+.Page.URL												 (v)			 the URL for the page relative to the web root. Note that a `url` set directly in front matter overrides the default relative URL for the rendered page.
+.Page.UniqueID									 (v)			 the MD5-checksum of the content file's path.
+.Page.Weight										 (v)			 assigned weight (in the front matter) to this content, used in sorting.
+.Page.WordCount									 (v)			 the number of words in the content.
+.Site.AllPages									 (v)			 array of all pages, regardless of their translation.
+.Site.Author										 (v)			 a map of the authors as defined in the site configuration.
+.Site.BaseURL										 (v)			 the base URL for the site as defined in the site configuration.
+.Site.BuildDrafts								 (v)			 a boolean (default: `false`) to indicate whether to build drafts as defined in the site configuration.
+.Site.Copyright									 (v)			 a string representing the copyright of your website as defined in the site configuration.
+.Site.Data											 (v)			 custom data, see [Data Templates](/templates/data-templates/).
+.Site.DisqusShortname						 (v)			 a string representing the shortname of the Disqus shortcode as defined in the site configuration.
+.Site.Files											 (v)			 all source files for the Hugo website.
+.Site.GoogleAnalytics						 (v)			 a string representing your tracking code for Google Analytics as defined in the site configuration.
+.Site.IsMultiLingual						 (v)			 whether there are more than one language in this site. See [Multilingual](/content-management/multilingual/) for more information.
+.Site.Language									 (v)			 indicates the language currently being used to render the website. This object's attributes are set in site configurations' language definition.
+.Site.Language.Lang							 (v)			 the language code of the current locale (e.g., `en`).
+.Site.Language.LanguageName			 (v)			 the full language name (e.g. `English`).
+.Site.Language.Weight						 (v)			 the weight that defines the order in the `.Site.Languages` list.
+.Site.LanguageCode							 (v)			 a string representing the language as defined in the site configuration. This is mostly used to populate the RSS feeds with the right language code.
+.Site.LanguagePrefix						 (v)			 this can be used to prefix URLs to point to the correct language. It will even work when only one defined language. See also the functions [absLangURL](/functions/abslangurl/) and [relLangURL](/functions/rellangurl).
+.Site.Languages									 (v)			 an ordered list (ordered by defined weight) of languages.
+.Site.LastChange								 (v)			 a string representing the date/time of the most recent change to your site. This string is based on the [`date` variable in the front matter](/content-management/front-matter) of your content pages.
+.Site.Menus											 (v)			 all of the menus in the site.
+.Site.Pages											 (v)			 array of all content ordered by Date with the newest first. This array contains only the pages in the current language.
+.Site.Permalinks								 (v)			 a string to override the default [permalink](/content-management/urls/) format as defined in the site configuration.
+.Site.RSSLink										 (v)			 the URL for the site RSS.
+.Site.RegularPages							 (v)			 a shortcut to the *regular* page collection. `.Site.RegularPages` is equivalent to `where .Site.Pages "Kind" "page"`.
+.Site.Sections									 (v)			 top-level directories of the site.
+.Site.Taxonomies								 (v)			 the [taxonomies](/taxonomies/usage/) for the entire site.	 Replaces the now-obsolete `.Site.Indexes` since v0.11. Also see section [Taxonomies elsewhere](#taxonomies-elsewhere).
+.Site.Title											 (v)			 a string representing the title of the site.
+.Sitemap.ChangeFreq							 (v)			 the page change frequency
+.Sitemap.Filename								 (v)			 the sitemap filename
+.Sitemap.Priority								 (v)			 the priority of the page
+.Parent													 (vsc)		 provides access to the parent shortcode context in nested shortcodes. This can be very useful for inheritance of common shortcode parameters from the root.
+.IsNamedParams									 (vsc)		 boolean that returns `true` when the shortcode in question uses [named rather than positional parameters][shortcodes]
+.Inner													 (vsc)		 represents the content between the opening and closing shortcode tags when a [closing shortcode][markdownshortcode] is used
+.Site.AllPages									 (vsc)		 array of all pages, regardless of their translation.
