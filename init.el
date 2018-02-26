@@ -715,10 +715,9 @@
     (load-file "~/.emacs.d/hugo-tmpl-mode.el")
     (font-lock-add-keywords 'mhtml-mode hugo-tmpl-font-lock-keywords)
     ;;(font-lock-add-keywords 'html-mode hugo-tmpl-font-lock-keywords)
-    ;;(add-to-list 'auto-mode-alist '("/layouts/.*\\.html\\'" . hugo-tmpl-mode))
+    (add-to-list 'auto-mode-alist '("/layouts/.*\\.html\\'" . hugo-tmpl-mode))
     )
   )
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* customization
