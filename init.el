@@ -1284,7 +1284,7 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper counsel iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg magit web-mode markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets yasnippet flycheck datetime-format lorem-ipsum ivy ace-window beacon editorconfig auto-complete which-key try use-package))
+	 '(hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets datetime-format lorem-ipsum ace-window beacon editorconfig auto-complete try))
  '(paradox-github-token t)
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
  '(sql-product 'ms)
