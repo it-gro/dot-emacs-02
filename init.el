@@ -1267,6 +1267,11 @@
 (global-set-key (kbd "C-:")				  'gro-insert-date-atom)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;* server
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(server-start)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* custom
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (custom-set-variables
@@ -1282,6 +1287,7 @@
 	 (quote
 		(esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote datetime-format lorem-ipsum font-lock-studio smart-tab logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish use-package)))
  '(paradox-github-token t)
+ '(powershell-indent 2)
  '(safe-local-variable-values (quote ((engine . go) (engine . ENGINE_NAME))))
  '(sql-product (quote ms))
  '(tab-width 2))
