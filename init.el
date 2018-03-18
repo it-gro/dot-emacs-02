@@ -85,17 +85,17 @@
 
 ;; => paradox-list-packages
 (use-package paradox
-  :ensure t
+  :defer t
   :config
   (setq paradox-spinner-type 'progress-bar)
   )
 
-;; => (auto-package-update-now)
-(use-package auto-package-update
-  :ensure t
-  :config
-  (auto-package-update-at-time "03:00")
-)
+;;;; => (auto-package-update-now)
+;;(use-package auto-package-update
+;;  :ensure t
+;;  :config
+;;  (auto-package-update-at-time "03:00")
+;;)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
@@ -440,7 +440,7 @@
 ;; 	)
 
 (use-package beacon
-  :ensure t
+  :defer t
   :config
   (beacon-mode 1)
   )
@@ -512,6 +512,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; pool check out
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package smart-tab
+  :ensure t
+	:config
+    (global-smart-tab-mode 1)
+		)
+
 
 ;;(use-package shell-pop
 ;;  :ensure t
@@ -745,10 +751,10 @@
 ;;* generic-x
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (require 'generic-x)
-(setq auto-mode-alist (cons '("\\.cmd$\\|\\.CMD$" . bat-generic-mode) auto-mode-alist))
-;;(setq generic-define-mswindows-modes t
-;;      generic-define-unix-modes t
-;;      )
+;;(setq auto-mode-alist (cons '("\\.cmd$\\|\\.CMD$" . bat-generic-mode) auto-mode-alist))
+(setq generic-define-mswindows-modes t
+      generic-define-unix-modes t
+      )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;** CUA (Motif/Windows GUI style shortcuts)
@@ -1298,10 +1304,11 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-    '(esup hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets datetime-format lorem-ipsum ace-window beacon editorconfig auto-complete try))
+	 (quote
+		(smart-tab esup hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets datetime-format lorem-ipsum ace-window beacon editorconfig auto-complete try)))
  '(paradox-github-token t)
- '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
- '(sql-product 'ms)
+ '(safe-local-variable-values (quote ((engine . go) (engine . ENGINE_NAME))))
+ '(sql-product (quote ms))
  '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
