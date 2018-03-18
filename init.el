@@ -130,7 +130,7 @@
 ;; most important packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package try
-  :ensure t
+  :defer t
 	)
 
 (use-package which-key
@@ -152,7 +152,7 @@
 )
 
 (use-package expand-region
-	:ensure t
+	:defer t
   :init
 	(global-set-key (kbd "C-=") 'er/expand-region)
 	)
@@ -167,7 +167,7 @@
 	)
 
 (use-package smex
-	:ensure t
+	:defer t
   :bind
 	:init
 	(global-set-key (kbd "M-x") 'smex)
@@ -177,14 +177,14 @@
 )
 
 (use-package iedit
-  :ensure t
+  :defer t
   :config
   (delete-selection-mode t)
  	;; (global-set-key (kbd "M-;") 'iedit-mode)
 )
 
 (use-package undo-tree
-  :ensure t
+  :defer t
   :config
   (global-undo-tree-mode)
 )
@@ -198,7 +198,7 @@
 ;;  )
 
 (use-package company
-  :ensure t
+  :defer t
   :config
   ;; Global
   (setq company-idle-delay 1
@@ -226,7 +226,7 @@
 
 
 (use-package company-quickhelp
-  :ensure t
+  :defer t
   :after company
   :config
   (company-quickhelp-mode 1)
@@ -248,7 +248,7 @@
 ;;  (company-quickhelp-mode)   	)
 
 (use-package company-dict
-  :ensure t
+  :defer t
   :after company
   :bind
   ("C-c h" . company-dict)
@@ -266,7 +266,7 @@
 
 
 (use-package company-web
-  :ensure t
+  :defer t
   :after company
   :bind
   ("C-c w" . company-web-html)
@@ -318,7 +318,7 @@
 
 
 (use-package yasnippet
-  :ensure t
+  :defer t
   :after company
   :config
 
@@ -330,7 +330,7 @@
 )
 
 (use-package yatemplate
-  :ensure t
+  :defer t
   :after yasnippet
   :config
 
@@ -383,11 +383,11 @@
 
 
 (use-package neotree
-	:ensure t
+	:defer t
 	)
 
 (use-package treemacs
-  :ensure t
+  :defer t
   :after hl-line-mode
   :bind
   (:map global-map
@@ -412,7 +412,7 @@
   )
 
 (use-package treemacs-projectile
-  :ensure t
+  :defer t
   :after treemacs
   :config
   (setq treemacs-header-function #'treemacs-projectile-create-header)
@@ -430,7 +430,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package theme-looper
-	:ensure t
+	:defer t
 	:init
 	(global-set-key (kbd "C-t") 'theme-looper-enable-next-theme)
 	)
@@ -470,7 +470,7 @@
 
 ;; https://github.com/doublep/logview
 (use-package logview
-  :ensure t
+  :defer t
   :config
   (add-to-list 'auto-mode-alist '("syslog\\(?:\\.[0-9]+\\)" . logview-mode))
   (add-to-list 'auto-mode-alist '("\\.log\\(?:\\.[0-9]+\\)?\\'" . logview-mode))
@@ -481,11 +481,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package org
-	:ensure t
+	:defer t
 	)
 
 (use-package org-bullets
-	:ensure t
+	:defer t
 	:config
 	(add-hook 'org-mode-hook
 						(lambda () (org-bullets-mode 1))
@@ -498,7 +498,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package ace-window
-	:ensure t
+	:defer t
 	:init
 	:config
 	(progn
@@ -556,7 +556,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package font-lock-studio
-  :ensure t
+  :defer t
 	)
 
 ;; comments and strings are pre-colored, as they are part of the
@@ -568,7 +568,7 @@
 ;;* e.g. 4hugo
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package lorem-ipsum
-  :ensure t
+  :defer t
   :config
 	(lorem-ipsum-use-default-bindings)
 	)
@@ -577,14 +577,14 @@
 ;;* e.g. 4hugo
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package datetime-format
-  :ensure t
+  :defer t
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* git, subversion, ...
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package magit
-  :ensure t
+  :defer t
   )
 
 ;;(use-package egg
@@ -595,7 +595,7 @@
 ;;* ascii art
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package boxquote
-  :ensure t
+  :defer t
 	)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -616,23 +616,23 @@
 ;;  )
 
 (use-package basic-mode
-	:ensure t
+	:defer t
 	)
 
 (use-package csharp-mode
-	:ensure t
+	:defer t
 	)
 
 (use-package powershell
-	:ensure t
+	:defer t
 	)
 
 (use-package sqlup-mode
-	:ensure t
+	:defer t
 	)
 
 (use-package web-mode
-	:ensure t
+	:defer t
 	:config
 	;;(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	(setq web-mode-engines-alist
@@ -677,26 +677,40 @@
 ;;* fileformat modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package markdown-mode   :ensure t)
-(use-package markdown-mode+  :ensure t)
-(use-package yaml-mode       :ensure t)
-(use-package yaml-tomato     :ensure t)
-(use-package toml-mode       :ensure t)
-(use-package dockerfile-mode :ensure t)
+(use-package markdown-mode   :defer t)
+(use-package markdown-mode+	 :defer t)
+(use-package yaml-mode			 :defer t)
+(use-package yaml-tomato		 :defer t)
+(use-package toml-mode			 :defer t)
+(use-package dockerfile-mode :defer t)
 
 ;;(use-package csv-mode
 ;;  :ensure t
 ;;  )
 
 (use-package csv-mode
-  :ensure t
+  :defer t
   :config
   ;; Define separators
   (setq csv-separators '("," ";" ":" " "))
 )
-(use-package csv-nav         :ensure t :disabled)
+(use-package csv-nav         :defer t :disabled)
 
-(use-package htmlize         :ensure t)
+(use-package htmlize         :defer t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;* debug emacs init
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (profiler-start 'cpu)
+;; ...
+;; (profiler-report)
+;; (profiler-stop)
+;; https://emacs.stackexchange.com/questions/39484/speed-up-emacs-start-up-time
+;; ESUP - Emacs Start Up Profiler
+;; (use-package :defer t)
+
+(use-package esup :defer t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1284,7 +1298,7 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets datetime-format lorem-ipsum ace-window beacon editorconfig auto-complete try))
+    '(esup hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets datetime-format lorem-ipsum ace-window beacon editorconfig auto-complete try))
  '(paradox-github-token t)
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
  '(sql-product 'ms)
