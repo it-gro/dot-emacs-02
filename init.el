@@ -63,11 +63,19 @@
 ;; M-x package-list-packages
 ;; M-x list-packages
 
+;; https://github.com/jwiegley/use-package
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package)
 	)
+
+(require 'use-package)
+(setq use-package-always-ensure t
+  use-package-verbose t
+  )
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; (org-babel-load-file (expand-file-name "~./.emacs.d/myinit.org"))
@@ -85,7 +93,6 @@
 
 ;; => paradox-list-packages
 (use-package paradox
-  :defer t
   :config
   (setq paradox-spinner-type 'progress-bar)
   )
@@ -130,7 +137,6 @@
 ;; most important packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package try
-  :defer t
 	)
 
 (use-package which-key
@@ -152,7 +158,6 @@
 )
 
 (use-package expand-region
-	:defer t
   :init
 	(global-set-key (kbd "C-=") 'er/expand-region)
 	)
@@ -167,7 +172,6 @@
 	)
 
 (use-package smex
-	:defer t
   :bind
 	:init
 	(global-set-key (kbd "M-x") 'smex)
@@ -177,14 +181,12 @@
 )
 
 (use-package iedit
-  :defer t
   :config
   (delete-selection-mode t)
  	;; (global-set-key (kbd "M-;") 'iedit-mode)
 )
 
 (use-package undo-tree
-  :defer t
   :config
   (global-undo-tree-mode)
 )
@@ -198,7 +200,6 @@
 ;;  )
 
 (use-package company
-  :defer t
   :config
   ;; Global
   (setq company-idle-delay 1
@@ -226,7 +227,6 @@
 
 
 (use-package company-quickhelp
-  :defer t
   :after company
   :config
   (company-quickhelp-mode 1)
@@ -238,8 +238,7 @@
 ;; M-h
 ;;(use-package company-quickhelp					; Documentation popups for Company
 ;;  :ensure t
-;;  :defer t
-;;  :config
+;;;;  :config
 ;;  (eval-after-load 'company
 ;;    '(define-key company-active-map (kbd "C-c h") #'company-quickhelp-manual-begin)
 ;;    )
@@ -248,7 +247,6 @@
 ;;  (company-quickhelp-mode)   	)
 
 (use-package company-dict
-  :defer t
   :after company
   :bind
   ("C-c h" . company-dict)
@@ -266,7 +264,6 @@
 
 
 (use-package company-web
-  :defer t
   :after company
   :bind
   ("C-c w" . company-web-html)
@@ -289,8 +286,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(use-package company
 ;;  :ensure t
-;;  :defer t
-;;  :bind ("C-<tab>" . company-complete)
+;;;;  :bind ("C-<tab>" . company-complete)
 ;;  :init (global-company-mode)
 ;;  :config
 ;;  (bind-key [remap completion-at-point] #'company-complete company-mode-map)
@@ -318,7 +314,6 @@
 
 
 (use-package yasnippet
-  :defer t
   :after company
   :config
 
@@ -330,7 +325,6 @@
 )
 
 (use-package yatemplate
-  :defer t
   :after yasnippet
   :config
 
@@ -383,11 +377,9 @@
 
 
 (use-package neotree
-	:defer t
 	)
 
 (use-package treemacs
-  :defer t
   :after hl-line-mode
   :bind
   (:map global-map
@@ -412,7 +404,6 @@
   )
 
 (use-package treemacs-projectile
-  :defer t
   :after treemacs
   :config
   (setq treemacs-header-function #'treemacs-projectile-create-header)
@@ -430,7 +421,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package theme-looper
-	:defer t
 	:init
 	(global-set-key (kbd "C-t") 'theme-looper-enable-next-theme)
 	)
@@ -440,7 +430,6 @@
 ;; 	)
 
 (use-package beacon
-  :defer t
   :config
   (beacon-mode 1)
   )
@@ -470,7 +459,6 @@
 
 ;; https://github.com/doublep/logview
 (use-package logview
-  :defer t
   :config
   (add-to-list 'auto-mode-alist '("syslog\\(?:\\.[0-9]+\\)" . logview-mode))
   (add-to-list 'auto-mode-alist '("\\.log\\(?:\\.[0-9]+\\)?\\'" . logview-mode))
@@ -481,11 +469,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package org
-	:defer t
 	)
 
 (use-package org-bullets
-	:defer t
 	:config
 	(add-hook 'org-mode-hook
 						(lambda () (org-bullets-mode 1))
@@ -498,7 +484,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package ace-window
-	:defer t
 	:init
 	:config
 	(progn
@@ -532,8 +517,7 @@
 
 ;;(use-package company-go
 ;;  :ensure t
-;;  :defer t
-;;  :init
+;;;;  :init
 ;;  (with-eval-after-load 'company
 ;;    (add-to-list 'company-backends 'company-go))
 ;;)
@@ -562,7 +546,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package font-lock-studio
-  :defer t
 	)
 
 ;; comments and strings are pre-colored, as they are part of the
@@ -574,7 +557,6 @@
 ;;* e.g. 4hugo
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package lorem-ipsum
-  :defer t
   :config
 	(lorem-ipsum-use-default-bindings)
 	)
@@ -583,14 +565,12 @@
 ;;* e.g. 4hugo
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package datetime-format
-  :defer t
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* git, subversion, ...
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package magit
-  :defer t
   )
 
 ;;(use-package egg
@@ -601,7 +581,6 @@
 ;;* ascii art
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package boxquote
-  :defer t
 	)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -622,23 +601,18 @@
 ;;  )
 
 (use-package basic-mode
-	:defer t
 	)
 
 (use-package csharp-mode
-	:defer t
 	)
 
 (use-package powershell
-	:defer t
 	)
 
 (use-package sqlup-mode
-	:defer t
 	)
 
 (use-package web-mode
-	:defer t
 	:config
 	;;(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	(setq web-mode-engines-alist
@@ -683,26 +657,25 @@
 ;;* fileformat modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package markdown-mode   :defer t)
-(use-package markdown-mode+	 :defer t)
-(use-package yaml-mode			 :defer t)
-(use-package yaml-tomato		 :defer t)
-(use-package toml-mode			 :defer t)
-(use-package dockerfile-mode :defer t)
+(use-package markdown-mode   )
+(use-package markdown-mode+	 )
+(use-package yaml-mode			 )
+(use-package yaml-tomato		 )
+(use-package toml-mode			 )
+(use-package dockerfile-mode )
 
 ;;(use-package csv-mode
 ;;  :ensure t
 ;;  )
 
 (use-package csv-mode
-  :defer t
   :config
   ;; Define separators
   (setq csv-separators '("," ";" ":" " "))
 )
-(use-package csv-nav         :defer t :disabled)
+(use-package csv-nav          :disabled)
 
-(use-package htmlize         :defer t)
+(use-package htmlize         )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -716,7 +689,7 @@
 ;; ESUP - Emacs Start Up Profiler
 ;; (use-package :defer t)
 
-(use-package esup :defer t)
+(use-package esup )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1304,11 +1277,10 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 (quote
-		(smart-tab esup hugo-tmpl-mode helpful logview treemacs-projectile undo-tree auto-minor-mode auto-package-update paradox use-package-ensure-system-package delight diminish company-dict company-web-html company-emoji company-plsense company-web company-quickhelp company easy-hugo font-lock-studio shell-pop powershell neotree csharp-mode toml-mode htmlize csv-mode dockerfile-mode yaml-mode yamel-mode gruber-darker-theme smex theme-looper iedit expand-region aggressive-indent aggressice-indent hungry-delete boxquote egg markdown-mode+ markdown-mode basic-mode sqlup-mode go-playground go-mode java-snippets go-snippets yasnippet-snippets datetime-format lorem-ipsum ace-window beacon editorconfig auto-complete try)))
+	 '(esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote magit datetime-format lorem-ipsum font-lock-studio smart-tab org-bullets logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish paradox use-package))
  '(paradox-github-token t)
- '(safe-local-variable-values (quote ((engine . go) (engine . ENGINE_NAME))))
- '(sql-product (quote ms))
+ '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
+ '(sql-product 'ms)
  '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
