@@ -1,0 +1,4 @@
+M-:
+(executable-find "git")
+(gnutls-available-p)
+(emacs-init-time)

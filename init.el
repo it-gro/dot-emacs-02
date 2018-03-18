@@ -56,7 +56,7 @@
 						 '("melpa" . "https://melpa.org/packages/")
 						 )
 
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+;;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
 (package-initialize)
 ;; M-x package-refresh-contents
@@ -83,6 +83,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq inhibit-startup-message t)
+;;(view-echo-area-messages)
 ;;(tool-bar-mode -1)
 (load-theme 'manoj-dark)
 
@@ -92,10 +93,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; => paradox-list-packages
-(use-package paradox
-  :config
-  (setq paradox-spinner-type 'progress-bar)
-  )
+;;(use-package paradox
+;;  :config
+;;  (setq paradox-spinner-type 'progress-bar)
+;;  )
 
 ;;;; => (auto-package-update-now)
 ;;(use-package auto-package-update
@@ -468,15 +469,15 @@
 ;;* org mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package org
-	)
-
-(use-package org-bullets
-	:config
-	(add-hook 'org-mode-hook
-						(lambda () (org-bullets-mode 1))
-						)
-	)
+;;(use-package org
+;; 	)
+;; 
+;;(use-package org-bullets
+;; 	:config
+;; 	(add-hook 'org-mode-hook
+;; 						(lambda () (org-bullets-mode 1))
+;; 						)
+;; 	)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -570,8 +571,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* git, subversion, ...
 ;;;;;;;;;;;;;;;;;;;;;;;;;
-(use-package magit
-  )
+;;(use-package magit
+;;  )
 
 ;;(use-package egg
 ;;  :ensure t
@@ -603,8 +604,9 @@
 (use-package basic-mode
 	)
 
-(use-package csharp-mode
-	)
+;; slow startup
+;;(use-package csharp-mode
+;; 	)
 
 (use-package powershell
 	)
@@ -1277,10 +1279,11 @@
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote magit datetime-format lorem-ipsum font-lock-studio smart-tab org-bullets logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish paradox use-package))
+	 (quote
+		(esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote datetime-format lorem-ipsum font-lock-studio smart-tab logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish use-package)))
  '(paradox-github-token t)
- '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
- '(sql-product 'ms)
+ '(safe-local-variable-values (quote ((engine . go) (engine . ENGINE_NAME))))
+ '(sql-product (quote ms))
  '(tab-width 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
