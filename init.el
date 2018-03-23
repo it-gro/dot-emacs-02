@@ -53,12 +53,12 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-						 '("melpa" . "https://melpa.org/packages/")
-						 )
+	     '("melpa" . "https://melpa.org/packages/")
+	     )
 
 ;;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
-(package-initialize)
+;;(package-initialize)
 ;; M-x package-refresh-contents
 ;; M-x package-list-packages
 ;; M-x list-packages
