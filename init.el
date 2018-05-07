@@ -760,7 +760,7 @@
 ;;* ibuffer
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(defalias 'list-buffers 'ibuffer)
-(defalias 'list-buffers 'ibuffer-other-window)
+;;(defalias 'list-buffers 'ibuffer-other-window)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* revert
