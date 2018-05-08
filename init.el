@@ -192,10 +192,10 @@
  	;; (global-set-key (kbd "M-;") 'iedit-mode)
 )
 
-(use-package undo-tree
-  :config
-  (global-undo-tree-mode)
-)
+;;(use-package undo-tree
+;;  :config
+;;  (global-undo-tree-mode)
+;;)
 
 ;;(use-package auto-complete
 ;;  :ensure t
