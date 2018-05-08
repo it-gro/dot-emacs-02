@@ -50,15 +50,15 @@
 ;; https://github.com/jwiegley/use-package
 
 ;;; code:
-(require 'package)
-(setq package-enable-at-startup nil)
+;(require 'package)
+;(setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
 	     )
 
 ;;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
-(package-initialize)
+(unless package--initialized (package-initialize t))
 ;; M-x package-refresh-contents
 ;; M-x package-list-packages
 ;; M-x list-packages
