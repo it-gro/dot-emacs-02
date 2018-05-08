@@ -58,7 +58,7 @@
 
 ;;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
-;;(package-initialize)
+(package-initialize)
 ;; M-x package-refresh-contents
 ;; M-x package-list-packages
 ;; M-x list-packages
