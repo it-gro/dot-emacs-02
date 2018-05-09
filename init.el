@@ -168,14 +168,14 @@
 	(global-set-key (kbd "C-=") 'er/expand-region)
 	)
 
-(use-package counsel
-	:ensure t
-  :bind (
-	        ("M-y" . counsel-yank-pop)
-          :map ivy-minibuffer-map
-          ("M-y" . ivy-next-line)
-	        )
-	)
+;;(use-package counsel
+;; 	:ensure t
+;;  :bind (
+;; 	        ("M-y" . counsel-yank-pop)
+;;          :map ivy-minibuffer-map
+;;          ("M-y" . ivy-next-line)
+;; 	        )
+;; 	)
 
 (use-package smex
   :bind
