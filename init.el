@@ -50,14 +50,15 @@
 ;; https://github.com/jwiegley/use-package
 
 ;;; code:
-;(require 'package)
-;(setq package-enable-at-startup nil)
+(require 'package)
+(setq package-enable-at-startup nil)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
 	     )
 
 ;;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
+(package-initialize)
 (unless package--initialized (package-initialize t))
 ;; M-x package-refresh-contents
 ;; M-x package-list-packages
@@ -725,7 +726,7 @@
 
 (setq system-time-locale "en_US.utf8")
 (prefer-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
+;;(set-selection-coding-system 'utf-8)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;* generic-x
