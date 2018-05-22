@@ -58,8 +58,11 @@
 
 ;;(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 
-(package-initialize)
-(unless package--initialized (package-initialize t))
+(if (<= emacs-major-version 26)
+		(package-initialize)
+  )
+;;(package-initialize)
+;;(unless package--initialized (package-initialize t))
 ;; M-x package-refresh-contents
 ;; M-x package-list-packages
 ;; M-x list-packages
