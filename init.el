@@ -129,9 +129,9 @@
 ;; :diminish
 
 ;; https://savannah.nongnu.org/projects/delight
-(use-package delight
-  :ensure t
-	)
+;;(use-package delight
+;;  :ensure t
+;; 	)
 ;; :delight
 
 ;; https://github.com/joewreschnig/auto-minor-mode
