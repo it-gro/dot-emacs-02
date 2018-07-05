@@ -1137,17 +1137,41 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;** text sauber machen
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun gro-http2md ()
+  "Convert http url to markdown syntax"
+  (interactive)
+  (replace-regexp "\\(https?://\\([^/\s\n]+\\)\\)\\(?:/?\\([\s\"\]\\|$\\)\\)" "[\\2](\\1)\\3" nil (point-min) (point-max ))
+  ;;                 1           2                        3
+	(replace-regexp "\\(https?://\\([^/\s\n]+\\)\\(\.*\\)/\\(\[^\s\n\"\]+\\)\\)" "[\\4](\\1) \*(\\2)\*"  nil (point-min) (point-max ) )
+  ;;                 1           2              3         4
+	(replace-regexp "/](http" "](http"  nil (point-min) (point-max ) )
+  )
+
+(defun gro-md2http ()
+  "Convert markdown syntax to http url"
+  (interactive)
+  (replace-regexp "\\[\[^]\\]+\\](\\(https?://[^)]+\\))\\( (.+?)\\)?" "\\1" nil (point-min) (point-max ))
+  ;;                                1                    2            
+  )
+
+(defun gro-mdRecreateHttp ()
+  "Convert markdown syntax to http url"
+  (interactive)
+	(gro-md2http)
+	(gro-http2md)
+)
+
 ;; set-buffer-file-coding-system
 ;; C-x RET f
-(defun gro-unix2dos ()
-  "Dos file."
-  (interactive)
-  (set-buffer-file-coding-system 'dos)
-  ;;"Setzt alle \r"
-  ;;(interactive)
-  ;;(goto-line 1)
-  ;;(replace-regexp "\n" "\r\n")
-  )
+;;;(defun gro-unix2dos ()
+;;;  "Dos file."
+;;;  (interactive)
+;;;  (set-buffer-file-coding-system 'dos)
+;;;  ;;"Setzt alle \r"
+;;;  ;;(interactive)
+;;;  ;;(goto-line 1)
+;;;  ;;(replace-regexp "\n" "\r\n")
+;;;  )
 
 (defun gro-clean ()
   "Untabify, delete-trailing-whitespace."
