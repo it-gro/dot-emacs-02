@@ -1140,18 +1140,42 @@
 (defun gro-http2md ()
   "Convert http url to markdown syntax"
   (interactive)
-  (replace-regexp "\\(https?://\\([^/\s\n]+\\)\\)\\(?:/?\\([\s\"\]\\|$\\)\\)" "[\\2](\\1)\\3" nil (point-min) (point-max ))
-  ;;                 1           2                        3
-	(replace-regexp "\\(https?://\\([^/\s\n]+\\)\\(\.*\\)/\\(\[^\s\n\"\]+\\)\\)" "[\\4](\\1) \*(\\2)\*"  nil (point-min) (point-max ) )
-  ;;                 1           2              3         4
-	(replace-regexp "/](http" "](http"  nil (point-min) (point-max ) )
+  (save-restriction
+    (narrow-to-region (region-beginning) (region-end) )
+    (goto-char 1)
+
+    (replace-regexp "\\(https?://\\([^/\s\n]+\\)\\)\\(?:/?\\([\s\"\]\\|$\\)\\)" "[\\2](\\1)\\3" )
+    ;;                 1           2                        3
+	  (replace-regexp "\\(https?://\\([^/\s\n]+\\)\\(\.*\\)/\\(\[^\s\n\"\]+\\)\\)" "[\\4](\\1) \*(\\2)\*" )
+    ;;                 1           2              3         4
+	  (replace-regexp "/](http" "](http"  )
+    )
   )
+
 
 (defun gro-md2http ()
   "Convert markdown syntax to http url"
   (interactive)
-  (replace-regexp "\\[\[^]\\]+\\](\\(https?://[^)]+\\))\\( (.+?)\\)?" "\\1" nil (point-min) (point-max ))
-  ;;                                1                    2            
+  (save-restriction
+    (narrow-to-region (region-beginning) (region-end) )
+    (goto-char 1)
+
+    (replace-regexp "\\[\[^]\\]+\\](\\(https?://[^)]+\\))\\( (.+?)\\)?" "\\1" )
+    ;;                                1                    2
+    )
+  )
+
+(defun gro-mdFix ()
+  "Convert markdown syntax to http url"
+  (interactive)
+  (save-restriction
+    (narrow-to-region (region-beginning) (region-end) )
+    (goto-char 1)
+
+    (replace-regexp "\\(\*(.+?)\*\\) \\1" "\\1" )
+    ;;                                1                    2
+    (replace-regexp "\(en\)" ""  )
+    )
   )
 
 (defun gro-mdRecreateHttp ()
@@ -1160,6 +1184,43 @@
 	(gro-md2http)
 	(gro-http2md)
 )
+
+
+(defun gro-unhex ()
+  "Decode percent encoded URI of URI under cursor or selection.
+
+Example:
+    http://en.wikipedia.org/wiki/Saint_Jerome_in_His_Study_%28D%C3%BCrer%29
+becomes
+    http://en.wikipedia.org/wiki/Saint_Jerome_in_His_Study_(Dürer)
+
+Example:
+    http://zh.wikipedia.org/wiki/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8
+becomes
+    http://zh.wikipedia.org/wiki/文本编辑器
+
+For string version, see `xah-html-url-percent-decode-string'.
+To encode, see `xah-html-encode-percent-encoded-url'.
+URL `http://ergoemacs.org/emacs/elisp_decode_uri_percent_encoding.html'
+Version 2015-09-14."
+  (interactive)
+  (let ($boundaries $p1 $p2 $input-str)
+    (if (use-region-p)
+      (progn
+        (setq $p1 (region-beginning))
+        (setq $p2 (region-end)))
+      (progn
+        (setq $boundaries (bounds-of-thing-at-point 'url))
+        (setq $p1 (car $boundaries))
+        (setq $p2 (cdr $boundaries))))
+    (setq $input-str (buffer-substring-no-properties $p1 $p2))
+    (require 'url-util)
+    (delete-region $p1 $p2)
+    (insert (decode-coding-string (url-unhex-string $input-str) 'utf-8)
+      )
+    )
+  )
+
 
 ;; set-buffer-file-coding-system
 ;; C-x RET f
