@@ -167,6 +167,7 @@
   (global-hungry-delete-mode)
 )
 
+
 (use-package expand-region
   :init
 	(global-set-key (kbd "C-=") 'er/expand-region)
@@ -1136,7 +1137,35 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;** text sauber machen
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun gro-pandoc-clean ()
+  "clean after texi2md"
+  (interactive)
+  (save-restriction
+    (narrow-to-region (region-beginning) (region-end) )
+    (goto-char 1)
+    (replace-regexp "\\[\\]{#.*?}" "" )
+    (goto-char 1)
+    (replace-regexp "{#.*?}" "" )
+    (goto-char 1)
+    (replace-regexp "^::: {.header}\[.\n\]*?:::" "" )
+    (goto-char 1)
+    (replace-regexp "^::: {.smallexample}\\(\[.\n\]*?\\):::" "\\1" )
+    (goto-char 1)
+    (replace-regexp "^``` {.smallexample}" "```" )
+    (goto-char 1)
+    (replace-regexp "^-+$" "" )
+    (goto-char 1)
+    (replace-regexp "^-   " "* " )
+    (goto-char 1)
+    (replace-regexp "-   \\\\- " " * " )
+    (goto-char 1)
+    (replace-regexp "\\.\\./images/" "./images/" )
+
+    )
+  )
+
+
 (defun gro-http2md ()
   "Convert http url to markdown syntax"
   (interactive)
@@ -1146,8 +1175,10 @@
 
     (replace-regexp "\\(https?://\\([^/\s\n]+\\)\\)\\(?:/?\\([\s\"\]\\|$\\)\\)" "[\\2](\\1)\\3" )
     ;;                 1           2                        3
+    (goto-char 1)
 	  (replace-regexp "\\(https?://\\([^/\s\n]+\\)\\(\.*\\)/\\(\[^\s\n\"\]+\\)\\)" "[\\4](\\1) \*(\\2)\*" )
     ;;                 1           2              3         4
+    (goto-char 1)
 	  (replace-regexp "/](http" "](http"  )
     )
   )
@@ -1159,7 +1190,6 @@
   (save-restriction
     (narrow-to-region (region-beginning) (region-end) )
     (goto-char 1)
-
     (replace-regexp "\\[\[^]\\]+\\](\\(https?://[^)]+\\))\\( (.+?)\\)?" "\\1" )
     ;;                                1                    2
     )
@@ -1171,9 +1201,9 @@
   (save-restriction
     (narrow-to-region (region-beginning) (region-end) )
     (goto-char 1)
-
     (replace-regexp "\\(\*(.+?)\*\\) \\1" "\\1" )
     ;;                                1                    2
+    (goto-char 1)
     (replace-regexp "\(en\)" ""  )
     )
   )
