@@ -1409,7 +1409,7 @@ Version 2015-09-14."
  '(electric-indent-mode nil)
  '(js-indent-level 2)
  '(package-selected-packages
-	 '(esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote datetime-format lorem-ipsum font-lock-studio smart-tab logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish use-package))
+	 '(hive tramp-term lxd-tramp tramp-hdfs git-timemachine gitconfig-mode git-lens git-gutter gited git-command esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote datetime-format lorem-ipsum font-lock-studio smart-tab logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish use-package))
  '(paradox-github-token t)
  '(powershell-indent 2)
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
