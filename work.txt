@@ -1,0 +1,117 @@
+;; https://github.com/seblemaguer/dotfiles/blob/master/emacs.d/main.org
+;; https://github.com/Schnouki/dotfiles/blob/master/emacs/init-20-dev.el
+
+
+;;(use-package ssh-config-mode
+;;  :ensure t
+;;  :config
+;;  (autoload 'ssh-config-mode "ssh-config-mode" t)
+;;  (add-to-list 'auto-mode-alist '("/\\.ssh/config\\'"     . ssh-config-mode))
+;;  (add-to-list 'auto-mode-alist '("/system/ssh\\'"        . ssh-config-mode))
+;;  (add-to-list 'auto-mode-alist '("/sshd?_config\\'"      . ssh-config-mode))
+;;  (add-to-list 'auto-mode-alist '("/known_hosts\\'"       . ssh-known-hosts-mode))
+;;  (add-to-list 'auto-mode-alist '("/authorized_keys2?\\'" . ssh-authorized-keys-mode))
+;;  (add-hook 'ssh-config-mode-hook 'turn-on-font-lock))
+
+
+
+;; http://ergoemacs.org/emacs/elisp_syntax_coloring.html
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Regexp-Functions.html
+;; https://www.emacswiki.org/emacs/RegularExpression
+
+
+(defun my-hugo-tmpl-completion-at-point2 ()
+  (interactive)
+  (let (
+         (pt (point)
+           ) ;; collect point
+         start end
+         )
+
+    (save-excursion ;; collect the program name
+      (comint-bol)
+      (re-search-forward "\\(\\S +\\)\\s ?")
+      )
+    (if (and (>= pt (match-beginning 1)
+               )
+          (<= pt (match-end 1)
+            )
+          )
+      () ;; if we're still entering the command, pass completion on to
+      ;; comint-completion-at-point by returning nil
+
+      (let ((command (match-string-no-properties 1)))
+        (when (member* command hugo-tmpl-expand  :test 'string= :key 'car)
+          ;; If the command is one of my-commands, use the associated completions
+          (goto-char pt)
+          (let ((start
+                  (save-excursion
+                    (skip-syntax-backward "^ ")
+                    (point))))
+
+            (list start pt (cdr (assoc command hugo-tmpl-expand )) :exclusive 'no)))))))
+
+
+(defun my-hugo-tmpl-completion-at-point ()
+  "This is the function to be used for the hook `completion-at-point-functions'."
+  (interactive)
+  (let*
+    (
+      ;;(bds (bounds-of-thing-at-point 'symbol)
+      (bds (bounds-of-thing-at-point 'word)
+        )
+      (start (car bds))
+      (end (cdr bds)))
+    (list start end hugo-tmpl-expand . nil )
+    )
+  )
+
+;;(define-derived-mode hugo-tmpl-mode c-mode "my-hugo"
+;;  "Major mode for editing my-hugo lang code …"
+;;  (add-hook 'completion-at-point-functions 'my-hugo-tmpl-completion-at-point nil 'local))
+
+
+;;(defvar ac-source-hugo
+;;  '(
+;;     (candidates . ( append
+;;                     hugo-tmpl-functions
+;;                     hugo-tmpl-actions
+;;                     hugo-tmpl-vars
+;;                     hugo-tmpl-var-frontmatter
+;;                     hugo-tmpl-var-file
+;;                     hugo-tmpl-var-page
+;;                     hugo-tmpl-var-gitinfo
+;;                     hugo-tmpl-var-hugo
+;;                     hugo-tmpl-var-menu
+;;                     hugo-tmpl-var-sitemap
+;;                     hugo-tmpl-var-site
+;;                     )
+;;       )
+;;     )
+;;  )
+;;
+;;
+;;(setq ac-sources
+;;  '(ac-source-hugo)
+;;  )
+
+
+;;(modify-syntax-entry ?\. "w" hugo-tmpl-mode-table)
+
+;; -   whitespace character         /   character quote character
+;;  w   word constituent            $   paired delimiter
+;;  _   symbol constituent          '   expression prefix
+;;  .   punctuation character       <   comment starter
+;;  (   open delimiter character    >   comment ender
+;;  )   close delimiter character   !   generic comment delimiter
+;;  "   string quote character      |   generic string delimiter
+;;  \   escape character            @   inherit from `standard-syntax-table'
+
+
+   ;;(setq hugo-tmpl-mode-table (make-syntax-table))
+   ;;(setq hugo-tmpl-mode-table (make-syntax-table mhtml-mode-syntax-table) )
+   ;;(modify-syntax-entry ?\` "\"" hugo-tmpl-mode-table)
+   ;;(modify-syntax-entry ?\. "." hugo-tmpl-mode-table)
+   ;;(set-syntax-table hugo-tmpl-mode-table)
+   ;;(add-hook 'completion-at-point-functions 'my-hugo-tmpl-completion-at-point nil 'local)
+   ;;(add-hook 'completion-at-point-functions 'my-hugo-tmpl-completion-at-point2 nil 'local)
