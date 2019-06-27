@@ -1405,16 +1405,25 @@ Version 2015-09-14."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 2)
+ '(column-number-mode t)
  '(css-indent-level 2)
  '(electric-indent-mode nil)
+ '(global-hl-line-mode t)
+ '(global-linum-mode t)
+ '(inhibit-startup-screen t)
  '(js-indent-level 2)
+ '(powershell-indent 2)
+ '(python-indent-offset 2)
+ '(python-shell-interpreter "python3")
+ '(ring-bell-function (quote ignore))
+ '(show-paren-mode 1)
+ '(sql-product (quote ms))
+ '(tab-width 2)
  '(package-selected-packages
 	 '(hive tramp-term lxd-tramp tramp-hdfs git-timemachine gitconfig-mode git-lens git-gutter gited git-command esup htmlize csv-mode dockerfile-mode toml-mode yaml-tomato yaml-mode markdown-mode+ markdown-mode web-mode sqlup-mode powershell csharp-mode basic-mode flycheck boxquote datetime-format lorem-ipsum font-lock-studio smart-tab logview beacon theme-looper treemacs-projectile treemacs neotree yatemplate yasnippet company-web company-dict company-quickhelp company undo-tree iedit smex counsel expand-region hungry-delete editorconfig which-key try auto-minor-mode delight diminish use-package))
  '(paradox-github-token t)
- '(powershell-indent 2)
  '(safe-local-variable-values '((engine . go) (engine . ENGINE_NAME)))
- '(sql-product 'ms)
- '(tab-width 2))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
